@@ -12,16 +12,36 @@ This project contains a simple Flask application that is containerized using Doc
 ### Using Docker
 1. Build the Docker image:
    ```bash
-   docker build -t flask-app .
-   ```
-2. Run the Docker container:
-   ```bash
-   docker run -p 5000:5000 flask-app
+   docker build -t k8s:v1 .
    ```
 
 ### Using Kubernetes
-1. Create a Kubernetes deployment and service configuration.
-2. Apply the configuration using `kubectl`.
+Apply the configuration using `kubectl`.
+
+## Deploying to Kubernetes with Localhost Access
+
+1. Apply the pod:
+   ```bash
+   kubectl apply -f pod.yml
+   ```
+
+2. Apply the deployment:
+   ```bash
+   kubectl apply -f deployment.yml
+   ```
+
+
+3. Apply the service:
+   ```bash
+   kubectl apply -f service.yml
+   ```
+
+### Access the Application
+1. Find the NodePort assigned to the service:
+   ```bash
+   kubectl get service k8s-service
+   ```
+2. Access the application in your browser using `http://localhost:5000`.
 
 ## API Endpoint
 - `GET /api/data`: Returns a JSON response with a message.
